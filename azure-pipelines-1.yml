@@ -25,22 +25,22 @@
     volumes:
     - /src/dir:/dst/dir # mount /src/dir on the host into /dst/dir in th- task: AzureWebApp@1
     -task: AzureRmWebAppDeployment@4
-      
+
 pool:
   vmImage: Ubuntu-18.04
 
-variables:
-  azureSubscriptionEndpoint: Contoso
-  DockerNamespace: contoso.azurecr.io
-  DockerRepository: aspnetcore
-  WebAppName: containersdemoapp
+# variables:
+#   azureSubscriptionEndpoint: Contoso
+#   DockerNamespace: contoso.azurecr.io
+#   DockerRepository: aspnetcore
+#   WebAppName: containersdemoapp
 
 steps:
   -task: AzureRMWebAppDeployment@4
    displayName:Azure App Service Deploy
    inputs:
      appType: webAppLinux
-     ConnectedServiceName: $(azureSubscriptionEndpoint)
+     #ConnectedServiceName: $()
      WebAppName: $(Nice-web)
       
 
@@ -55,7 +55,6 @@ resources:
       appType:'webAppLinux'
       WebAppName:'nice_app'
       packageForLinux:'$(System.DefaultWorkingDirectory)/**/*.zip'
-      -task:GenerateYAMLTask@1
       inDir:'$(System.DefaultWorkingDirectory)'
       outDir:$(Build.ArtifactStagingDirectory)'
       package:'$(System.DefaultWorkingDirectory)/**/*.zip'
