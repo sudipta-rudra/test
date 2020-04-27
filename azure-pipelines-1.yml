@@ -5,13 +5,14 @@
 
 resources:
   pipelines:
-  - pipeline: MyAppA
-    source: MyCIPipelineA
-  - pipeline: MyAppB
-    source: MyCIPipelineB
-    trigger: true
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'PublishProfile'
+    PublishProfilePath: '$(System.DefaultWorkingDirectory)/**/*.pubxml'
+    PublishProfilePassword: 'sud'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
   - pipeline: MyAppC
-    project:  DevOpsProject
+    project:  NICE_APP_PR
     source: MyCIPipelineC
     branch: releases/M159
     version: 20190718.2
@@ -36,4 +37,9 @@ resources:
     - 8080:80 # bind container port 80 to 8080 on the host machine
     - 6379 # bind container port 6379 to a random available port on the host machine
     volumes:
-    - /src/dir:/dst/dir # mount /src/dir on the host into /dst/dir in the container
+    - /src/dir:/dst/dir # mount /src/dir on the host into /dst/dir in th- task: AzureWebApp@1
+  inputs:
+    appType: 'webApp'
+    appName: 'nice_app'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'runFromPackage'
