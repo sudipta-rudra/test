@@ -24,7 +24,7 @@ resources:
         exclude:
         - users/*
 
-resources_1:
+resources1:
   containers:
   - container: linux
     image: ubuntu:16.04
@@ -40,18 +40,18 @@ resources_1:
     - /src/dir:/dst/dir # mount /src/dir on the host into /dst/dir in th- task: AzureWebApp@1
   
 inputs:
-- task: AzureRmWebAppDeployment@4
+ -task: AzureRmWebAppDeployment@4
   inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'azure-nice - Azure'
-    appType: 'webApp'
-    WebAppName: 'nice_app'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-  -task: GenerateYAMLTask@1
-  inputs:
-    inDir: '$(System.DefaultWorkingDirectory)'
-    outDir: '$(Build.ArtifactStagingDirectory)'
-    appType: 'webApp'
-    appName: 'nice_app'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    deploymentMethod: 'runFromPackage'
+    ConnectionType:'AzureRM'
+    azureSubscription:'azure-nice - Azure'
+    appType:'webApp'
+    WebAppName:'nice_app'
+    packageForLinux:'$(System.DefaultWorkingDirectory)/**/*.zip'
+  -task:GenerateYAMLTask@1
+inputs:
+    inDir:'$(System.DefaultWorkingDirectory)'
+    outDir:$(Build.ArtifactStagingDirectory)'
+    appType:'webApp'
+    appName:'nice_app'
+    package:'$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod:'runFromPackage'
