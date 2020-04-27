@@ -1,0 +1,65 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+
+  trigger:
+    branches:
+    include:
+      - master
+      - releases/*
+      exclude:
+      - users/*
+  containers:
+  - container: linux
+    image: ubuntu:18.04
+  - container: windows
+    image: myprivate.azurecr.io/windowsservercore:1803
+    endpoint: my_acr_connection
+  - container: my_service
+    image: my_service:tag
+    ports:
+    - 8080:80 # bind container port 80 to 8080 on the host machine
+    - 6379 # bind container port 6379 to a random available port on the host machine
+    volumes:
+    - /src/dir:/dst/dir # mount /src/dir on the host into /dst/dir in th- task: AzureWebApp@1
+    -task: AzureRmWebAppDeployment@4
+
+pool:
+  vmImage: Ubuntu-18.04
+
+# variables:
+#   azureSubscriptionEndpoint: Contoso
+#   DockerNamespace: contoso.azurecr.io
+#   DockerRepository: aspnetcore
+#   WebAppName: containersdemoapp
+
+steps:
+  -task: AzureRMWebAppDeployment@4
+   displayName:Azure App Service Deploy
+   inputs:
+     appType: webAppLinux
+     #ConnectedServiceName: $()
+     WebAppName: $(Nice-web)
+      
+
+resources:
+  pipelines: azure-nice
+    project:NICE_APP_PR
+    source: azure-nice
+    
+  inputs:
+    ConnectionType:'AzureRM'
+      azureSubscription:'azure-nice - Azure'
+      appType:'webAppLinux'
+      WebAppName:'nice_app'
+      packageForLinux:'$(System.DefaultWorkingDirectory)/**/*.zip'
+      inDir:'$(System.DefaultWorkingDirectory)'
+      outDir:$(Build.ArtifactStagingDirectory)'
+      package:'$(System.DefaultWorkingDirectory)/**/*.zip'
+      deploymentMethod:'runFromPackage'
+    ConnectionType: 'PublishProfile'
+    PublishProfilePath: '$(System.DefaultWorkingDirectory)/**/*.pubxml'
+    #PublishProfilePassword: 'sud'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
