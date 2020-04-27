@@ -24,7 +24,7 @@ resources:
         exclude:
         - users/*
 
-resources:
+resources_1:
   containers:
   - container: linux
     image: ubuntu:16.04
