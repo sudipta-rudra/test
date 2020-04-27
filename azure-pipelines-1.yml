@@ -40,6 +40,13 @@ resources:
     - /src/dir:/dst/dir # mount /src/dir on the host into /dst/dir in th- task: AzureWebApp@1
   
 inputs:
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'azure-nice - Azure'
+    appType: 'webApp'
+    WebAppName: 'nice_app'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
   -task: GenerateYAMLTask@1
   inputs:
     inDir: '$(System.DefaultWorkingDirectory)'
