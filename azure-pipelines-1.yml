@@ -1,22 +1,9 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
-# variables:
-#   # Azure service connection established during pipeline creation
-#   azureSubscription: dd7d79d6-5761-40bc-ae07-3a3df9a01302
-#   appName: Nice-web
-#   # Agent VM image name
-#   vmImageName: 'ubuntu-latest'
-#   appType: 'webAppLinux'
-#   deploymentMethod: 'zipDeploy'
 
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -40,4 +27,17 @@ pool:
     slotName: 'production'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
+- task: AzureAppServiceSettings@1
+  inputs:
+    azureSubscription: 'azure-nice - Azure'
+    appName: 'azure-nice'
+    resourceGroupName: 'sudipta-training-resource-group'
 
+# variables:
+#   # Azure service connection established during pipeline creation
+#   azureSubscription: dd7d79d6-5761-40bc-ae07-3a3df9a01302
+#   appName: Nice-web
+#   # Agent VM image name
+#   vmImageName: 'ubuntu-latest'
+#   appType: 'webAppLinux'
+#   deploymentMethod: 'zipDeploy'
