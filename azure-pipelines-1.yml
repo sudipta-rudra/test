@@ -5,18 +5,18 @@
 
 resources:
   pipelines:
-- task: AzureRmWebAppDeployment@4
+  -task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'PublishProfile'
     PublishProfilePath: '$(System.DefaultWorkingDirectory)/**/*.pubxml'
     PublishProfilePassword: 'sud'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-  - pipeline: MyAppC
-    project:  NICE_APP_PR
-    source: MyCIPipelineC
-    branch: releases/M159
-    version: 20190718.2
-    trigger:
+  -pipeline: MyAppC
+    project:NICE_APP_PR
+    source:MyCIPipelineC
+    branch:releases/M159
+    version:20190718.2
+  trigger:
       branches:
         include:
         - master
@@ -38,7 +38,12 @@ resources:
     - 6379 # bind container port 6379 to a random available port on the host machine
     volumes:
     - /src/dir:/dst/dir # mount /src/dir on the host into /dst/dir in th- task: AzureWebApp@1
+  
+inputs:
+  -task: GenerateYAMLTask@1
   inputs:
+    inDir: '$(System.DefaultWorkingDirectory)'
+    outDir: '$(Build.ArtifactStagingDirectory)'
     appType: 'webApp'
     appName: 'nice_app'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
