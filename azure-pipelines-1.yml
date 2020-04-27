@@ -9,14 +9,26 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  # Azure service connection established during pipeline creation
-  azureSubscription: dd7d79d6-5761-40bc-ae07-3a3df9a01302
-  appName: Nice-web
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
-  appType: webAppLinux
-  deploymentMethod: zipDeploy
+# variables:
+#   # Azure service connection established during pipeline creation
+#   azureSubscription: dd7d79d6-5761-40bc-ae07-3a3df9a01302
+#   appName: Nice-web
+#   # Agent VM image name
+#   vmImageName: 'ubuntu-latest'
+#   appType: 'webAppLinux'
+#   deploymentMethod: 'zipDeploy'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'azure-nice - Azure'
+    appType: 'webAppLinux'
+    WebAppName: 'azure-nice'
+    deployToSlotOrASE: true
+    ResourceGroupName: 'sudipta-training-resource-group'
+    SlotName: 'production'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'PYTHON|3.6'
 
 - task: AzureWebApp@1
   inputs:
@@ -27,11 +39,5 @@ variables:
     resourceGroupName: 'sudipta-training-resource-group'
     slotName: 'production'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    
-- task: AzureWebApp@1 # Add this at the end of your file
-  inputs:
-    azureSubscription: dd7d79d6-5761-40bc-ae07-3a3df9a01302
-    appType: webAppLinux
-    appName: $(Nice-web)
-    package: $(System.ArtifactsDirectory)/**/*.zip
-    
+
+
