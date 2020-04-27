@@ -4,11 +4,6 @@
 # https://aka.ms/yaml
 
 
-  -pipeline: azure-nice
-    project:NICE_APP_PR
-    source: azure-nice
-    branch:releases/M159
-    version:20190718.2
   trigger:
     branches:
     include:
@@ -50,18 +45,19 @@ steps:
       
 
 resources:
-  pipelines:
+  pipelines: azure-nice
+    project:NICE_APP_PR
+    source: azure-nice
+    
   inputs:
     ConnectionType:'AzureRM'
       azureSubscription:'azure-nice - Azure'
-      appType:'webApp'
+      appType:'webAppLinux'
       WebAppName:'nice_app'
       packageForLinux:'$(System.DefaultWorkingDirectory)/**/*.zip'
       -task:GenerateYAMLTask@1
       inDir:'$(System.DefaultWorkingDirectory)'
       outDir:$(Build.ArtifactStagingDirectory)'
-      appType:'webApp'
-      appName:'nice_app'
       package:'$(System.DefaultWorkingDirectory)/**/*.zip'
       deploymentMethod:'runFromPackage'
     ConnectionType: 'PublishProfile'
