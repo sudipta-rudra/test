@@ -16,10 +16,22 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
   appType: webAppLinux
+  deploymentMethod: zipDeploy
 
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'azure-nice - Azure'
+    appType: 'webAppLinux'
+    appName: 'azure-nice'
+    deployToSlotOrASE: true
+    resourceGroupName: 'sudipta-training-resource-group'
+    slotName: 'production'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    
 - task: AzureWebApp@1 # Add this at the end of your file
   inputs:
     azureSubscription: dd7d79d6-5761-40bc-ae07-3a3df9a01302
     appType: webAppLinux
     appName: $(Nice-web)
     package: $(System.ArtifactsDirectory)/**/*.zip
+    
