@@ -47,6 +47,9 @@ steps:
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
     RuntimeStack: 'PYTHON|3.6'
 
+  
+- task: PublishBuildArtifacts@1
+  
 # variables:
 #   # Azure service connection established during pipeline creation
 #   azureSubscription: dd7d79d6-5761-40bc-ae07-3a3df9a01302
