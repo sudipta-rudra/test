@@ -18,14 +18,23 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'sudipta-training-resource-group'
     slotName: 'production'
-    #package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
 - task: AzureAppServiceSettings@1
   inputs:
     azureSubscription: 'azure-nice - Azure'
     appName: 'azure-nice'
     resourceGroupName: 'sudipta-training-resource-group'
-
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'azure-nice - Azure'
+    appType: 'webAppLinux'
+    appName: 'azure-nice'
+    deployToSlotOrASE: true
+    resourceGroupName: 'sudipta-training-resource-group'
+    slotName: 'production'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    runtimeStack: 'PYTHON|3.6'
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
@@ -35,7 +44,7 @@ steps:
     deployToSlotOrASE: true
     ResourceGroupName: 'sudipta-training-resource-group'
     SlotName: 'production'
-    #packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
     RuntimeStack: 'PYTHON|3.6'
 
 # variables:
