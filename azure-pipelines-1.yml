@@ -35,6 +35,9 @@ steps:
     slotName: 'production'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
     runtimeStack: 'PYTHON|3.6'
+    appSettings: |
+      -Port 5000 -RequestTimeout 5000
+      -WEBSITE_TIME_ZONE "Eastern Standard Time"
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
