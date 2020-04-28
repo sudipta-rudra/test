@@ -1,8 +1,7 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+
 
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -25,6 +24,7 @@ pool:
     resourceGroupName: 'sudipta-training-resource-group'
     slotName: 'production'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    runtimeStack: 'PYTHON|3.6'
 
 - task: AzureAppServiceSettings@1
   inputs:
@@ -40,3 +40,9 @@ pool:
 #   vmImageName: 'ubuntu-latest'
 #   appType: 'webAppLinux'
 #   deploymentMethod: 'zipDeploy'
+
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  - template: templates/npm-steps.yml  # Template reference
