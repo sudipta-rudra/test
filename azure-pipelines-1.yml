@@ -1,7 +1,30 @@
 trigger:
 - master
+- releases/*
 
+pool:
+  vmImage: 'ubuntu-18.04'
 
+variables:
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'azure-nice - Azure'
+    appType: 'webAppLinux'
+    appName: 'azure-nice'
+    deployToSlotOrASE: true
+    resourceGroupName: 'sudipta-training-resource-group'
+    slotName: 'production'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+- task: AzureAppServiceSettings@1
+  inputs:
+    azureSubscription: 'azure-nice - Azure'
+    appName: 'azure-nice'
+    resourceGroupName: 'sudipta-training-resource-group'
 
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -15,23 +38,6 @@ trigger:
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
     RuntimeStack: 'PYTHON|3.6'
 
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'azure-nice - Azure'
-    appType: 'webAppLinux'
-    appName: 'azure-nice'
-    deployToSlotOrASE: true
-    resourceGroupName: 'sudipta-training-resource-group'
-    slotName: 'production'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    runtimeStack: 'PYTHON|3.6'
-
-- task: AzureAppServiceSettings@1
-  inputs:
-    azureSubscription: 'azure-nice - Azure'
-    appName: 'azure-nice'
-    resourceGroupName: 'sudipta-training-resource-group'
-
 # variables:
 #   # Azure service connection established during pipeline creation
 #   azureSubscription: dd7d79d6-5761-40bc-ae07-3a3df9a01302
@@ -40,9 +46,3 @@ trigger:
 #   vmImageName: 'ubuntu-latest'
 #   appType: 'webAppLinux'
 #   deploymentMethod: 'zipDeploy'
-
-- job: Linux
-  pool:
-    vmImage: 'ubuntu-16.04'
-  steps:
-  - template: templates/npm-steps.yml  # Template reference
