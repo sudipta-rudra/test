@@ -10,24 +10,8 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'azure-nice - Azure'
-    appType: 'webAppLinux'
-    appName: 'azure-nice'
-    deployToSlotOrASE: true
-    resourceGroupName: 'sudipta-training-resource-group'
-    slotName: 'production'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
-- task: AzureAppServiceSettings@1
-  inputs:
-    azureSubscription: 'azure-nice - Azure'
-    appName: 'azure-nice'
-    resourceGroupName: 'sudipta-training-resource-group'
-    appSettings: |
-      -Port 5000 -RequestTimeout 5000
-      -WEBSITE_TIME_ZONE "Eastern Standard Time"
+
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'azure-nice - Azure'
@@ -38,7 +22,17 @@ steps:
     slotName: 'production'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
     runtimeStack: 'PYTHON|3.6'
-    
+
+
+# - task: AzureAppServiceSettings@1
+#   inputs:
+#     azureSubscription: 'azure-nice - Azure'
+#     appName: 'azure-nice'
+#     resourceGroupName: 'sudipta-training-resource-group'
+#     appSettings: |
+#       -Port 5000 -RequestTimeout 5000
+#       -WEBSITE_TIME_ZONE "Eastern Standard Time" 
+
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
