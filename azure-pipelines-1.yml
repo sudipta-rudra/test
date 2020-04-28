@@ -10,8 +10,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-
-
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'azure-nice - Azure'
@@ -21,7 +19,7 @@ steps:
     resourceGroupName: 'sudipta-training-resource-group'
     slotName: 'production'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    runtimeStack: 'PYTHON|3.6'
+    runtimeStack: 'JAVA|11-java11'
 
 
 # - task: AzureAppServiceSettings@1
@@ -43,7 +41,7 @@ steps:
     ResourceGroupName: 'sudipta-training-resource-group'
     SlotName: 'production'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    RuntimeStack: 'PYTHON|3.6'
+    RuntimeStack: 'JAVA|11-java11'
 
   
 - task: PublishBuildArtifacts@1
