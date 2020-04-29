@@ -19,7 +19,7 @@ steps:
     resourceGroupName: 'sudipta-training-resource-group'
     slotName: 'production'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    runtimeStack: 'JAVA|11-java11'
+    runtimeStack: 'JAVA|8-jre8'
 
 
 # - task: AzureAppServiceSettings@1
@@ -41,7 +41,7 @@ steps:
     ResourceGroupName: 'sudipta-training-resource-group'
     SlotName: 'production'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    RuntimeStack: 'JAVA|11-java11'
+    RuntimeStack: 'JAVA|8-jre8'
 
   
 - task: PublishBuildArtifacts@1
