@@ -9,10 +9,33 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: AzureVmssDeployment@0
-  inputs:
-    azureSubscription: 'niceatgserviceconnection'
-    action: 'Update image'
-    vmssName: 'azure-nicevm'
-    vmssOsType: 'Linux'
+jobs:
+- job: Build
+    displayName: Build Maven Project
+    steps:
+    - task: Maven@3
+      displayName: 'Maven Package'
+      inputs:
+        mavenPomFile: 'pom.xml'
+    - task: CopyFiles@2
+      displayName: 'Copy Files to artifact staging directory'
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '**/target/*.zip'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
+    - upload: $(Build.ArtifactStagingDirectory)
+      artifact: drop
+
+  
+    - deployment: VMDeploy
+      displayName: web
+      pool:
+        vmImage: 'Ubuntu-18.04'
+      environment:
+        name: nice-vm
+        resourceType: VirtualMachine
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - script: echo my first deployment
