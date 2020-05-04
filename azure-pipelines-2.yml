@@ -12,7 +12,7 @@ pool:
 steps:
 - task: AzureVmssDeployment@0
   inputs:
-    azureSubscription: 'devtestserviceconn'
+    azureSubscription: 'niceatgserviceconnection'
     action: 'Update image'
     vmssName: 'azure-nicevm'
     vmssOsType: 'Linux'
