@@ -5,17 +5,10 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'Ubuntu 18.04'
+  environment: nice-vm 
 
 
-
-jobs: 
-- deployment: VMDeploy
-  displayName: web
-  environment:
-    name: nice-vm
-    resourceType: VirtualMachine
-           
   steps:
   - task: Bash@3
     inputs:
