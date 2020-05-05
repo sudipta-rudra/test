@@ -6,9 +6,6 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'Ubuntu 18.04'
-
 
 jobs: 
 - deployment: VMDeploy
