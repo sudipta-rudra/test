@@ -9,11 +9,11 @@ pool:
   environment: nice-vm 
 
 
-  steps:
-  - task: Bash@3
-    inputs:
-      targetType: 'inline'
-      script: |
-        sudo apt install mosquitto
-        sudo cp ~/nice-mosquitto.conf /etc/mosquitto/conf.d
-        sudo systemctl restart mosquitto.service
+steps:
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      sudo apt install mosquitto
+      sudo cp ~/nice-mosquitto.conf /etc/mosquitto/conf.d
+      sudo systemctl restart mosquitto.service
