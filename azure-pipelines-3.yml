@@ -4,9 +4,6 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'Ubuntu 18.04'
-  environment: nice-vm 
 
 steps:
 - task: CmdLine@2
