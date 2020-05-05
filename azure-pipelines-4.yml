@@ -6,11 +6,6 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-18.04'
-
-
-
 jobs:
 - deployment: VMDeploy
   displayName: web
