@@ -5,14 +5,13 @@ trigger:
 - master
 
 pool:
-  vmImage: 'Ubuntu 18.04'
+  vmImage: 'sudipta-ubuntu'
   environment: nice-vm 
 
 
 steps:
-- task: Bash@3
+- task: CmdLine@2
   inputs:
-    targetType: 'inline'
     script: |
       sudo apt install mosquitto
       sudo cp ~/nice-mosquitto.conf /etc/mosquitto/conf.d
