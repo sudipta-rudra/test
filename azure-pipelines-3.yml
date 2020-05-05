@@ -16,6 +16,13 @@ steps:
       sudo cp ~/nice-mosquitto.conf /etc/mosquitto/conf.d
       sudo systemctl restart mosquitto.service
 
+- task: AzureFileCopy@4
+  inputs:
+    SourcePath: 'C:\Users\7000022901\Downloads\nice-mosquitto.conf'
+    azureSubscription: 'niceatgserviceconnection'
+    Destination: 'AzureVMs'
+    storage: 'sardniceaccountname'
+    resourceGroup: 'NICE-ATG-SARD-RESOURCE-GROUP'
 
 
     
