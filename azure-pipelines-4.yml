@@ -9,6 +9,8 @@ trigger:
 jobs: 
 - deployment: VMDeploy
   displayName: web
+  pool:
+  vmImage: 'Ubuntu 18.04'
   environment:
     name: nice-vm
     resourceType: VirtualMachine
