@@ -18,6 +18,7 @@ steps:
     location: 'Central US'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://github.com/sudipta-rudra/test/blob/master/template.json'
+    csmParametersFileLink: 'https://github.com/sudipta-rudra/test/blob/master/parameters.json'
     deploymentMode: 'Incremental'
     deploymentName: 'az-servicebus'
 
