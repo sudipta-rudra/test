@@ -17,8 +17,8 @@ steps:
     resourceGroupName: 'vijay-training-resource-group'
     location: 'Central US'
     templateLocation: 'URL of the file'
-    csmFileLink: 'blob/master/template.json'
-    csmParametersFileLink: 'blob/master/parameters.json'
+    csmFileLink: 'sudipta-rudra/test/blob/master/parameters.json'
+    csmParametersFileLink: 'sudipta-rudra/test/blob/master/parameters.json'
     deploymentMode: 'Incremental'
     deploymentName: 'az-servicebus'
 
