@@ -1,7 +1,5 @@
 # Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+
 
 trigger:
 - master
@@ -10,10 +8,18 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'niceatgserviceconnection'
+    subscriptionId: 'dd7d79d6-5761-40bc-ae07-3a3df9a01302'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'NICE-atg-sard-resource-group'
+    location: 'Central US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/sudipta-rudra/test/blob/master/template.json'
+    csmParametersFileLink: 'https://github.com/sudipta-rudra/test/blob/master/parameters.json'
+    deploymentMode: 'Incremental'
+    deploymentName: 'az-servicebus'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+
