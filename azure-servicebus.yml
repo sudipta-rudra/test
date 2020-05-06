@@ -11,14 +11,14 @@ steps:
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'niceatgserviceconnection'
+    azureResourceManagerConnection: 'devtestserviceconn'
     subscriptionId: 'dd7d79d6-5761-40bc-ae07-3a3df9a01302'
     action: 'Create Or Update Resource Group'
-    resourceGroupName: 'NICE-atg-sard-resource-group'
+    resourceGroupName: 'vijay-training-resource-group'
     location: 'Central US'
     templateLocation: 'URL of the file'
-    csmFileLink: 'sudipta-rudra/test/blob/master/template.json'
-    csmParametersFileLink: 'sudipta-rudra/test/blob/master/parameters.json'
+    csmFileLink: 'blob/master/template.json'
+    csmParametersFileLink: 'blob/master/parameters.json'
     deploymentMode: 'Incremental'
     deploymentName: 'az-servicebus'
 
