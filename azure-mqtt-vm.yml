@@ -15,6 +15,7 @@ steps:
   inputs:
     script: |
       ssh sudipta-ubuntu@13.82.82.32
+      echo Sudiepta
       sudo apt install mosquitto
       #pwd
       sudo cp ~/nice-mosquitto.conf /etc/mosquitto/conf.d
