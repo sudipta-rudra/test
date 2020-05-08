@@ -15,7 +15,7 @@ steps:
   inputs:
     script: |
       sudo apt install mosquitto
-      sudo cp /home/vsts/work/1/s/nice-mosquitto.conf /etc/mosquitto/conf.d
+      sudo cp /home/sudipta-ubuntu/azagent/nice-mosquitto.conf /etc/mosquitto/conf.d
       sudo systemctl restart mosquitto.service
       pwd
       ls ~/
