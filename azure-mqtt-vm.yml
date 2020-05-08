@@ -16,7 +16,7 @@ steps:
     script: |
       sudo apt install mosquitto
       #pwd
-      sudo ~/nice-mosquitto.conf /etc/mosquitto/conf.d
+      sudo cp ~/nice-mosquitto.conf /etc/mosquitto/conf.d
       sudo systemctl restart mosquitto.service
       
 
