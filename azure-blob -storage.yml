@@ -10,11 +10,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: AzureFileCopy@4
+- task: AzureResourceManagerTemplateDeployment@3
   inputs:
-    SourcePath: 'https://raw.githubusercontent.com/sudipta-rudra/test/master/parameters.json'
-    azureSubscription: 'niceatgserviceconnection'
-    Destination: 'AzureBlob'
-    storage: 'sardniceaccountname'
-    ContainerName: 'local db'
-    BlobPrefix: 'blob1'
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'niceatgserviceconnection'
+    subscriptionId: 'dd7d79d6-5761-40bc-ae07-3a3df9a01302'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'NICE-atg-sard-resource-group'
+    location: 'Central US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/sudipta-rudra/test/master/storage/template.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/sudipta-rudra/test/3cc7f12163a3c787c1a91f128ed543779cf71111/storage/parameters.json'
+    deploymentMode: 'Incremental'
