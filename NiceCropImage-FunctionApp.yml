@@ -8,11 +8,11 @@
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
+# variables:
   # Azure service connection established during pipeline creation
-  azureSubscription: 
-  appName: 
-  vmImageName: 'ubuntu-latest'
+  # azureSubscription: 
+  # appName: 
+  # vmImageName: 'ubuntu-latest'
 
 
 steps:
@@ -20,7 +20,7 @@ steps:
   inputs:
     azureSubscription: 'niceatgserviceconnection'
     appType: 'functionAppLinux'
-    appName: 'NiceCropImageFunctionApp'
+    appName: 'niceCropimageazFunctionApp'
     deployToSlotOrASE: true
     resourceGroupName: 'NICE-atg-sard-resource-group'
     slotName: 'production'
