@@ -21,9 +21,6 @@ steps:
     azureSubscription: 'niceatgserviceconnection'
     appType: 'functionAppLinux'
     appName: 'niceCropimageazFunctionApp'
-    deployToSlotOrASE: true
-    resourceGroupName: 'NICE-atg-sard-resource-group'
-    slotName: 'production'
     package: '$(System.DefaultWorkingDirectory)/**/niceCropimageazFunctionApp.zip'
     runtimeStack: 'python 3.6'
 
