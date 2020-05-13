@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  # Azure service connection established during pipeline creation
+  azureSubscription: 
+  appName: 
+  vmImageName: 'ubuntu-latest'
+
+
+steps:
+- task: AzureFunctionApp@1
+  inputs:
+    azureSubscription: 'niceatgserviceconnection'
+    appType: 'functionAppLinux'
+    appName: 'NiceCropImageFunctionApp'
+    deployToSlotOrASE: true
+    resourceGroupName: 'NICE-atg-sard-resource-group'
+    slotName: 'production'
+    package: '$(System.DefaultWorkingDirectory)/**/NiceCropImageFunctionApp.zip'
+    runtimeStack: 'python 3.6'
+
+
