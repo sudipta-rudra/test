@@ -30,6 +30,9 @@ steps:
     azureSubscription: 'tmp-nice-atg-service-conn'
     appType: 'functionAppLinux'
     appName: 'NiceCropImageFunctionApp'
+    deployToSlotOrASE: true
+    resourceGroupName: 'temp-nice-atg'
+    slotName: 'production'
     package: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId)NiceCropImageFunctionApp.zip'
     runtimeStack: 'python 3.6'
 
