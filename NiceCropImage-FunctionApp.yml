@@ -25,6 +25,13 @@ steps:
 #     ArtifactName: 'drop'
 #     publishLocation: 'Container'
 
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'tmp-nice-atg-service-conn'
+    appType: 'functionAppLinux'
+    WebAppName: 'NiceCropImageFunctionApp'
+
 - task: AzureFunctionApp@1
   inputs:
     azureSubscription: 'tmp-nice-atg-service-conn'
