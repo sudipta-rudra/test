@@ -14,7 +14,7 @@ steps:
   displayName: "Archive files"
   inputs:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)/NiceCropImageFunctionApp'
-    includeRootFolder: false
+    includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId)NiceCropImageFunctionApp.zip'
     replaceExistingArchive: true
