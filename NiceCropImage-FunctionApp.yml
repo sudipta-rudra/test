@@ -19,18 +19,14 @@ steps:
     archiveFile: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId)NiceCropImageFunctionApp.zip'
     replaceExistingArchive: true
 
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId)NiceCropImageFunctionApp.zip'
-#     ArtifactName: 'drop'
-#     publishLocation: 'Container'
 
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'tmp-nice-atg-service-conn'
-    appType: 'functionAppLinux'
-    WebAppName: 'NiceCropImageFunctionApp'
+
+# - task: AzureRmWebAppDeployment@4
+#   inputs:
+#     ConnectionType: 'AzureRM'
+#     azureSubscription: 'tmp-nice-atg-service-conn'
+#     appType: 'functionAppLinux'
+#     WebAppName: 'NiceCropImageFunctionApp'
 
 - task: AzureFunctionApp@1
   inputs:
@@ -43,3 +39,7 @@ steps:
     package: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId)NiceCropImageFunctionApp.zip'
     runtimeStack: 'python 3.6'
     
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
