@@ -19,18 +19,18 @@ steps:
     archiveFile: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId)NiceCropImageFunctionApp.zip'
     replaceExistingArchive: true
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId)NiceCropImageFunctionApp.zip'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId)NiceCropImageFunctionApp.zip'
+#     ArtifactName: 'drop'
+#     publishLocation: 'Container'
 
 - task: AzureFunctionApp@1
   inputs:
     azureSubscription: 'tmp-nice-atg-service-conn'
     appType: 'functionAppLinux'
     appName: 'NiceCropImageFunctionApp'
-    package: '$(System.DefaultWorkingDirectory)/**/NiceCropImageFunctionApp'
+    package: '$(System.DefaultWorkingDirectory)/**/NiceCropImageFunctionApp.zip'
     runtimeStack: 'python 3.6'
 
 
