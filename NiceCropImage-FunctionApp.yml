@@ -30,7 +30,7 @@ steps:
     azureSubscription: 'tmp-nice-atg-service-conn'
     appType: 'functionAppLinux'
     appName: 'NiceCropImageFunctionApp'
-    package: '$(System.DefaultWorkingDirectory)/**/NiceCropImageFunctionApp.zip'
+    package: '$(System.DefaultWorkingDirectory)/**/NiceCropImageFunctionApp'
     runtimeStack: 'python 3.6'
 
 
