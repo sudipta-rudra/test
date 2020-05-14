@@ -1,0 +1,5 @@
+requests
+azure-functions
+numpy
+opencv-python
+azure-storage-blob
