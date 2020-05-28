@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>NICE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{css/login.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="spinner">
+    <i class="fa fa-refresh fa-spin" style="font-size:50px"></i>
+</div>
+
+<div class="login-layout">
+    <nav>
+        <div class="loginHeader">
+            <img th:src="@{images/NICE_logo.jpg}" width="140px" style="float:left;">
+        </div>
+    </nav>
+
+    <div class="login-header text-center">
+        <span>Welcome - please sign in</span>
+    </div>
+
+
+    <div class="content text-center">
+        <form  name="f" th:action="@{/login}" method="post" >
+
+            <fieldset>
+                <div class="form-group text-left">
+                    <label for="username">User ID(email address)</label>
+                    <input type="text" class="form-control" id="username" name="username"  placeholder="Enter email" >
+                </div>
+
+                <div class="form-group text-left" >
+                    <label  for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
+                </div>
+
+                <div class="form-group text-left" >
+                    <span><a href="#">Forgot Password?</a></span>
+                </div>
+
+                <!-- <div class="form-group" >
+                <button  type="submit" class="btn btn-primary" >SIGN IN</button>
+                </div> -->
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" >SIGN IN</button>
+                </div>
+
+                <!-- <div class="alert alert-danger" role="alert">Bad credentials</div>     -->
+
+                <!-- <div class="form-group error" style="display: none;">
+                    <span style="color:red">Incorrect id and password</span>
+                </div> -->
+
+                <div th:if="${param.error}" class="form-group error">
+                    <span style="color:red">Incorrect id and password</span>
+                </div>
+                <div th:if="${param.logout}" class="form-group error">
+                    <span style="color:red">You have been logged out.</span>
+                </div>
+            </fieldset>
+        </form>
+
+        <div class="signup-text">
+            <span>Don't have an account? <a href="#">Sign up here.</a></span>
+        </div>
+
+    </div>
+    <!-- End of content -->
+
+    <div class="footer" >
+        <div>
+            <span><a href="#">Need help?</a> | <a href="#">Privacy policy</a></span>
+        </div>
+        <div>
+            <span>Copyright 2020 NICE Alliance</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+      $("button").click(function(e){
+        e.preventDefault();
+        $(".spinner").show();
+        setTimeout(function(){
+          $("form").submit();
+        },1000)
+      })
+</script>
+
+</body>
+</html>
