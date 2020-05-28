@@ -1,5 +1,5 @@
 {
-    "Storage_account_connection_string":"DefaultEndpointsProtocol=https;AccountName=sardniceaccountname;AccountKey=F+7b1/7/8blm6NvcfIPHimStobEwmOGr7bBzdz0OnvNEzn5bgb87U18iRVXVqmDG54v6edlp4BW+JAA4+HH5lA==;EndpointSuffix=core.windows.net",
+    "Storage_account_connection_string":"DefaultEndpointsProtocol=https;AccountName=sudiptacli;AccountKey=gNyK1fY3QVcnvYGC8NLpYnBaZ/zWgFm0B3+0YGVIWv4MAHm808XCgx5wzBHbPwTaAdeD77Z1TWpah9KmASjSEw==;EndpointSuffix=core.windows.net",
     "NICE_ML_APP_SERVICE_URL":"http://nicefacerecognition.azurewebsites.net",
     "Cropped_images_container_name":"detectedimages"
 }
