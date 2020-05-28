@@ -17,3 +17,4 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'temp-NICE-atg-sard-resource-group'
     slotName: 'production'
+    containers: 'myregistry.azurecr.io/nginx:latest'
